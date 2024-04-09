@@ -12,7 +12,7 @@ library(dplyr)
 library(ggplot2)
 library(cowplot)
 
-source("../HGTfunctions3.R")
+source("../Utilities/HGTfunctions3.R")
 
 ##############################################################
 # Choose hyperparameters based on WAIC for the ZI-HGT + CARD #
