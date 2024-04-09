@@ -22,7 +22,7 @@
 # and scenario (see the paper for a description) ##scenario_number##
 # Results_CARD/Mixnoise##Mixnoise_number##/Sc##scenario_number##/
 
-source("../HGTfunctions3.R")
+source("../Utilities/HGTfunctions3.R")
 
 ###############################
 # Prep the ZI-HGT + CARD Data #
