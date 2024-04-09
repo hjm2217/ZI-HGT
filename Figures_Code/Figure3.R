@@ -12,7 +12,7 @@
 
 # Prepping the raw simulation results for plotting #
 
-# Run this code from the parent directory where your results are stored
+# Run this code from the parent directory where your results are stored - likely Simulation_Results
 # We named the directory containing simulation results for sample ##sample_number##
 # SPARSim_Results/Sample_##sample_number##/
 
