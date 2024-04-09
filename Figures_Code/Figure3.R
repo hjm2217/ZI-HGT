@@ -8,7 +8,7 @@
 # We have included the prepared (for plotting) simulation results, which may be found in
 # Simulations/Simulation_Results/OSCC_Simulations_Sparsity_vs_RMSE_Reduction.txt
 
-# If you do not wish to go through the preparation process
+# If you do not wish to go through the preparation process skip to # Load in the data and plot #
 
 # Prepping the raw simulation results for plotting #
 
