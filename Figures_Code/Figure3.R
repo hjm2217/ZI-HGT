@@ -9,13 +9,13 @@
 # Simulations/Simulation_Results/OSCC_Simulations_Sparsity_vs_RMSE_Reduction.txt
 # All actual simulation results may be found on our OSF.
 
-# If you do not wish to go through the preparation process
-
-# Prepping the raw simulation results for plotting #
-
 # Run this code from the parent directory where your results are stored
 # We named the directory containing simulation results for sample ##sample_number##
 # SPARSim_Results/Sample_##sample_number##/
+
+###############################
+# Prep the simulation results #
+###############################
 
 iseed <- c(56789, 123456 + 111111*0:98)
 sample <- 2
@@ -51,7 +51,7 @@ for (j in 1:4500){
                        SC_rep = grid$SC_replicate[j], ST_rep = grid$ST_replicate[j], 
                        alpha0 = grid$alpha0[j], alpha1 = grid$alpha1[j], 
                        CARD_rmse = res$rmse$CARD_rmse, Ave_rmse = res$rmse$Ave_rmse, 
-                       Median_rmse = res$rmse$Median_rmse, j = j, WAIC = res$WAIC,
+                       j = j, WAIC = res$WAIC,
                        PercentMeanDiff = (1 - (res_df$Ave_rmse / res_df$CARD_rmse))*100)
   res_df <- rbind(res_df, tmp_df)
   if (j %% 10 == 0){
@@ -93,7 +93,9 @@ res_df$sparsity_level_f <- factor(res_df$sparsity_level)
 # Save the dataframe now that it is fully prepped
 write.table(res_df, "../Simulations/Simulation_Results/OSCC_Simulations_Sparsity_vs_RMSE_Reduction.txt", sep = "\t", row.names=F)
 
-
+#################
+# Make the plot #
+#################
 
 # Load in the data and plot #
 res_df <- read.table("../Simulations/Simulation_Results/OSCC_Simulations_Sparsity_vs_RMSE_Reduction.txt", header = T)
