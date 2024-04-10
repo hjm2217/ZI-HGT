@@ -20,7 +20,7 @@ source("../Utilities/HGTfunctions3.R")
 
 # Run this code to generate the min_WAIC dataframe from the parent directory of where you
 # have stored the results for the ZI-HGT + CARD real data analysis with *all* hyperparameters.
-# We will only include the results with the WAIC-chosen hyperparameters on Github for storage reasons.
+# We will only include the results with the WAIC-chosen hyperparameters for sample 1 on Github for storage reasons (the remaining results are on our OSF).
 # If you want to skip this step and just make the plots, scroll down to 
 ###########################################################################################
 # Make plots of cell locations and proportions for CARD, HGT + CARD, and the HGT 95% BCIs #

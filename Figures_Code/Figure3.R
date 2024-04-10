@@ -7,12 +7,13 @@
 # For the code used to solely plot the results, scroll down past the prep code.
 # We have included the prepared (for plotting) simulation results, which may be found in
 # Simulations/Simulation_Results/OSCC_Simulations_Sparsity_vs_RMSE_Reduction.txt
+# All actual simulation results may be found on our OSF.
 
-# If you do not wish to go through the preparation process skip to # Load in the data and plot #
+# If you do not wish to go through the preparation process
 
 # Prepping the raw simulation results for plotting #
 
-# Run this code from the parent directory where your results are stored - likely Simulation_Results
+# Run this code from the parent directory where your results are stored
 # We named the directory containing simulation results for sample ##sample_number##
 # SPARSim_Results/Sample_##sample_number##/
 
