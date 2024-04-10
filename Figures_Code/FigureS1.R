@@ -9,17 +9,13 @@
 # Simulations/Simulation_Results/OSCC_Simulations_num_cell_types_vs_RMSE_Reduction.txt
 # All actual simulation results may be found on our OSF.
 
-# If you do not wish to go through the preparation process
-
-# Prepping the raw simulation results for plotting #
+###############################
+# Prep the simulation results #
+###############################
 
 # Run this code from the parent directory where your results are stored
 # We named the directory containing simulation results for sample ##sample_number##
 # SPARSim_Results/Sample_##sample_number##/
-
-###############################
-# Prep the simulation results #
-###############################
 
 iseed <- c(56789, 123456 + 111111*0:98)
 sample <- 2
@@ -100,6 +96,7 @@ write.table(res_df, "../Simulations/Simulation_Results/OSCC_Simulations_num_cell
 #############
 # Make plot #
 #############
+library(ggplot2)
 
 res_df <- read.table("../Simulations/Simulation_Results/OSCC_Simulations_num_cell_types_vs_RMSE_Reduction.txt", header = T)
 
