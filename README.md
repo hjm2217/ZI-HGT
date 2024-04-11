@@ -24,6 +24,10 @@ Real_Data_Analysis directory or Simulations directory, or they may be found on [
 
 ## Real_Data_Analysis
 
+Code to generate the results based on the real data, 12 OSCC TME samples collected by Arora et al.  We ran this code on
+the university's high performance computer, which uses a Slurm workload manager.  For exact specifications of the job we
+ran, see the .sh file.  The real data is unfortunately too  large to store on GitHub, but it may be found on [OSF](https://osf.io/kygsx/).
+
 ## Simulations
 
 ## Utilities
