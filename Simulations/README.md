@@ -11,7 +11,7 @@ underscores before and after the option (for example, \_JOB\_NAME\_HERE\_).
 
 There are quite a few files and subdirectories in this directory, so we will describe each of them below.
 
-# ST_SPARSim_OSCC_Sample_2_Different_Sparsities.R
+## ST_SPARSim_OSCC_Sample_2_Different_Sparsities.R
 
 This file (along with the accompanying submission script ST_SPARSim_OSCC_Sample_2_Different_Sparsities.sh) generates
 the simulated ST data for the comparison of the ZI-HGT + CARD vs. CARD alone on different ST datasets with different
