@@ -11,7 +11,7 @@ underscores before and after the option (for example, \_JOB\_NAME\_HERE\_).
 
 We describe each file and subdirectory below, split into three categories: 1) simulating the scRNA-seq data, 2) simulating the ST data, 3) subdirectories and data storage.
 
-# Simulating the scRNA-seq data
+# Simulating the scRNA-seq data (All contained in the scRNAseq_Simulations subdirectory)
 
 ### SPARSim_OSCC_2.R and SPARSim_OSCC_2_Bigger_Phi_only.R
 
@@ -39,11 +39,13 @@ sparsity levels for OSCC Sample 2.  The results from the accompanying analysis o
 of the job we ran can be found in the two files.
 
 This relies on the simulated scRNAseq data found in the _scRNAseq_Simulations_ subdirectory and the OSCC Sample 2
-reference information found in the _Reference_ subdirectory.
+reference information found in the _Reference_ subdirectory.  The simulated ST data are saved in the _SPARSIM_ST_Data/_ directory, which is empty here on GitHub but contains all simulated data on [OSF](https://osf.io/kygsx/).
 
 # Analyzing the Simulated ST data
 
 ### runHGTCARD_OSCC_SPARSims_Sample_2_Different_Sparsities.R
 
 This file (along with the accompanying submission script _runHGTCARD_OSCC_SPARSims_Sample_2_Different_Sparsities.sh_) runs the ZI-HGT + CARD and CARD alone on the simulated ST data for OSCC Sample 2 with different sparsity levels.  The results from this simulation are shown in Figure 3.  Exact specifications of the job can be found in the two files.  We note that, as currently constructed, you will run 3 simulations each across 1500 arrays on your HPC.  On our university's HPC, we could only run 100 arrays at any given time, so we would adjust the submission script's array argument to read --array=1-100.  After running this, we would run it again with array=101-200, and so on.
+
+The results from these simulations are saved in the _SPARSim_Results/_ directory, which is empty here on GitHub but contains all results on [OSF](https://osf.io/kygsx/).
 
