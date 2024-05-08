@@ -9,9 +9,20 @@ For the exact specifications of each job we ran, see the .sh files.  You may nee
 options depending on the computational resources you have access to, and any options you'll need to fill in yourself have 
 underscores before and after the option (for example, \_JOB\_NAME\_HERE\_).
 
-There are quite a few files and subdirectories in this directory, so we will describe each of them below.
+We describe each file and subdirectory below, split into three categories: 1) simulating the scRNA-seq data, 2) simulating the ST data, 3) subdirectories and data storage.
 
-## ST_SPARSim_OSCC_Sample_2_Different_Sparsities.R
+## Simulating the scRNA-seq data
+
+### SPARSim_OSCC_2.R and SPARSim_OSCC_2_Bigger_Phi_only.R
+
+These files (along with the accompanying submission scripts _SPARSim_OSCC_2.R.sh_ and _SPARSim_OSCC_2_Bigger_Phi_only.sh_) generate the simulated scRNAseq data used in constructing the simulated
+ST data for the comparison of the ZI-HGT + CARD vs. CARD alone on different ST datasets with different
+sparsity levels for OSCC Sample 2 (Figure 3).  The simulated scRNAseq datasets may be found in the _scRNAseq_sim_data/_ subdirectory on [OSF](https://osf.io/kygsx/), though not on GitHub as they are too large.
+You'll need to run both files to generate all of the necessary simulated scRNAseq data.
+
+## Simulating the ST data
+
+### ST_SPARSim_OSCC_Sample_2_Different_Sparsities.R
 
 This file (along with the accompanying submission script ST_SPARSim_OSCC_Sample_2_Different_Sparsities.sh) generates
 the simulated ST data for the comparison of the ZI-HGT + CARD vs. CARD alone on different ST datasets with different
