@@ -1,3 +1,5 @@
+# scRNAseq_Simulations
+
 This directory contains all code necessary to generate the simulated scRNAseq data with SPARSim.  The simulated data
 is saved to the directory _scRNAseq_sim_data/_, though this is empty on GitHub as the files are too large.
 
