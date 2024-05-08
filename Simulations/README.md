@@ -18,14 +18,16 @@ We describe each file and subdirectory below, split into three categories: 1) si
 These files (along with the accompanying submission scripts _SPARSim_OSCC_2.sh_ and _SPARSim_OSCC_2_Bigger_Phi_only.sh_) generate the simulated scRNAseq data used in constructing the simulated
 ST data for the comparison of the ZI-HGT + CARD vs. CARD alone on different ST datasets with different
 sparsity levels for OSCC Sample 2 (Figure 3).  The simulated scRNAseq datasets may be found in the _scRNAseq_sim_data/_ subdirectory on [OSF](https://osf.io/kygsx/), though not on GitHub as they are too large.
-You'll need to run both files to generate all of the necessary simulated scRNAseq data.
+You'll need to run both files to generate all of the necessary simulated scRNAseq data.  Exact specifications
+of the jobs we ran can be found in the files.
 
 ### Split_SPARSim_OSCC_scRNAseq.R and Split_SPARSim_OSCC_scRNAseq_Bigger_Phi_only.R
 
 These files (along with the accompanying submission scripts _Split_SPARSim_OSCC_scRNAseq.sh_ and _Split_SPARSim_OSCC_scRNAseq_Bigger_Phi_only.sh_) split the aforementioned simulated scRNAseq data into 
 two parts.  The first split of the data is used to generate the simulated ST data, the second split is used
 as the cell-type deconvolution reference dataset.  The split simulated scRNAseq datasets may be found in the _scRNAseq_sim_data/_ subdirectory on [OSF](https://osf.io/kygsx/), though not on GitHub as they are too large.
-You'll need to run both files to split all of simulated scRNAseq data.
+You'll need to run both files to split all of simulated scRNAseq data.  Exact specifications
+of the jobs we ran can be found in the files.
 
 # Simulating the ST data
 
@@ -33,9 +35,15 @@ You'll need to run both files to split all of simulated scRNAseq data.
 
 This file (along with the accompanying submission script ST_SPARSim_OSCC_Sample_2_Different_Sparsities.sh) generates
 the simulated ST data for the comparison of the ZI-HGT + CARD vs. CARD alone on different ST datasets with different
-sparsity levels for OSCC Sample 2.  The results from this analysis are displayed in Figure 3.  Exact specifications
+sparsity levels for OSCC Sample 2.  The results from the accompanying analysis of this simulated data are primarily displayed in Figure 3.  Exact specifications
 of the job we ran can be found in the two files.
 
 This relies on the simulated scRNAseq data found in the _scRNAseq_Simulations_ subdirectory and the OSCC Sample 2
 reference information found in the _Reference_ subdirectory.
+
+# Analyzing the Simulated ST data
+
+### runHGTCARD_OSCC_SPARSims_Sample_2_Different_Sparsities.R
+
+This file (along with the accompanying submission script _runHGTCARD_OSCC_SPARSims_Sample_2_Different_Sparsities.sh_) runs the ZI-HGT + CARD and CARD alone on the simulated ST data for OSCC Sample 2 with different sparsity levels.  The results from this simulation are shown in Figure 3.  Exact specifications of the job can be found in the two files.  We note that, as currently constructed, you will run 3 simulations each across 1500 arrays on your HPC.  On our university's HPC, we could only run 100 arrays at any given time, so we would adjust the submission script's array argument to read --array=1-100.  After running this, we would run it again with array=101-200, and so on.
 
