@@ -34,9 +34,18 @@ of the jobs we ran can be found in the files.
 ### ST_SPARSim_OSCC_Sample_2_Different_Sparsities.R
 
 This file (along with the accompanying submission script ST_SPARSim_OSCC_Sample_2_Different_Sparsities.sh) generates
-the simulated ST data for the comparison of the ZI-HGT + CARD vs. CARD alone on different ST datasets with different
+the simulated ST data for the comparison of the ZI-HGT + CARD vs. CARD alone on ST datasets with different
 sparsity levels for OSCC Sample 2.  The results from the accompanying analysis of this simulated data are primarily displayed in Figure 3.  Exact specifications
 of the job we ran can be found in the two files.
+
+This relies on the simulated scRNAseq data found in the _scRNAseq_Simulations_ subdirectory and the OSCC Sample 2
+reference information found in the _Reference_ subdirectory.  The simulated ST data are saved in the _SPARSIM_ST_Data/_ directory, which is empty here on GitHub but contains all simulated data on [OSF](https://osf.io/kygsx/).
+
+### ST_SPARSim_OSCC_Sample_2_Different_Numbers_Cell_Types.R
+
+This file (along with the accompanying submission script ST_SPARSim_OSCC_Sample_2_Different_Numbers_Cell_Types.sh) generates
+the simulated ST data for the comparison of the ZI-HGT + CARD vs. CARD alone with different
+numbers of cell types on "realistically sparse" simulated ST data for OSCC Sample 2.  The results from the accompanying analysis of this simulated data are primarily displayed in Supplementary Figure 1.  Exact specifications of the job we ran can be found in the two files.
 
 This relies on the simulated scRNAseq data found in the _scRNAseq_Simulations_ subdirectory and the OSCC Sample 2
 reference information found in the _Reference_ subdirectory.  The simulated ST data are saved in the _SPARSIM_ST_Data/_ directory, which is empty here on GitHub but contains all simulated data on [OSF](https://osf.io/kygsx/).
@@ -48,4 +57,12 @@ reference information found in the _Reference_ subdirectory.  The simulated ST d
 This file (along with the accompanying submission script _runHGTCARD_OSCC_SPARSims_Sample_2_Different_Sparsities.sh_) runs the ZI-HGT + CARD and CARD alone on the simulated ST data for OSCC Sample 2 with different sparsity levels.  The results from this simulation are shown in Figure 3.  Exact specifications of the job can be found in the two files.  We note that, as currently constructed, you will run 3 simulations each across 1500 arrays on your HPC.  On our university's HPC, we could only run 100 arrays at any given time, so we would adjust the submission script's array argument to read --array=1-100.  After running this, we would run it again with array=101-200, and so on.
 
 The results from these simulations are saved in the _SPARSim_Results/_ directory, which is empty here on GitHub but contains all results on [OSF](https://osf.io/kygsx/).
+
+### runHGTCARD_OSCC_SPARSims_Sample_2_Different_Numbers_Cell_Types.R
+
+This file (along with the accompanying submission script _runHGTCARD_OSCC_SPARSims_Sample_2_Different_Numbers_Cell_Types.sh_) runs the ZI-HGT + CARD and CARD alone with different numbers of cell types on "realistically sparse" simulated ST data for OSCC Sample 2.  The results from this simulation are shown in Supplementary Figure 1.  Exact specifications of the job can be found in the two files.  We note that, as currently constructed, you will run 3 simulations each across 1200 arrays on your HPC.  On our university's HPC, we could only run 100 arrays at any given time, so we would adjust the submission script's array argument to read --array=1-100.  After running this, we would run it again with array=101-200, and so on.
+
+The results from these simulations are saved in the _SPARSim_Results/_ directory, which is empty here on GitHub but contains all results on [OSF](https://osf.io/kygsx/).
+
+
 
