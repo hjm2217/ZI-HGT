@@ -50,6 +50,14 @@ numbers of cell types on "realistically sparse" simulated ST data for OSCC Sampl
 This relies on the simulated scRNAseq data found in the _scRNAseq_Simulations_ subdirectory and the OSCC Sample 2
 reference information found in the _Reference_ subdirectory.  The simulated ST data are saved in the _SPARSIM_ST_Data/_ directory, which is empty here on GitHub but contains all simulated data on [OSF](https://osf.io/kygsx/).
 
+### ST_SPARSim_OSCC_All_Samples_Comp.R
+
+This file (along with the accompanying submission script ST_SPARSim_OSCC_All_Samples_Comp.sh) generates
+the simulated ST data for the comparison of the ZI-HGT + CARD vs. CARD alone on "realistically sparse" simulated ST data for all OSCC samples.  Additionally, the results of these simulations are used to demonstrate the small difference between using WAIC-chosen hyperparameters and optimally chosen hyperparameters (to minimize the RMSE in simulations, i.e., the oracle hyperparameters).  These results are displayed in Supplementary Figure 2.  Exact specifications of the job we ran can be found in the two files.
+
+This relies on the simulated scRNAseq data found in the _scRNAseq_Simulations_ subdirectory and the OSCC
+reference information found in the _Reference_ subdirectory.  The simulated ST data are saved in the _SPARSIM_ST_Data/_ directory, which is empty here on GitHub but contains all simulated data on [OSF](https://osf.io/kygsx/).
+
 # Analyzing the Simulated ST data
 
 ### runHGTCARD_OSCC_SPARSims_Sample_2_Different_Sparsities.R
@@ -64,5 +72,10 @@ This file (along with the accompanying submission script _runHGTCARD_OSCC_SPARSi
 
 The results from these simulations are saved in the _SPARSim_Results/_ directory, which is empty here on GitHub but contains all results on [OSF](https://osf.io/kygsx/).
 
+### runHGTCARD_OSCC_SPARSims_All_Samples_Comp.R
+
+This file (along with the accompanying submission script _runHGTCARD_OSCC_SPARSims_All_Samples_Comp.sh_) runs the ZI-HGT + CARD and CARD on "realistically sparse" simulated ST data for all OSCC samples.  Additionally, the results of these simulations are used to demonstrate the small difference between using WAIC-chosen hyperparameters and optimally chosen hyperparameters (to minimize the RMSE in simulations, i.e., the oracle hyperparameters).  The results are shown in Supplementary Figure 2.  Exact specifications of the job can be found in the two files.  We note that, as currently constructed, you will run 1 simulation across 9900 arrays (as some of the samples are too large and therefore slow to do 3 simulations per array) on your HPC.  On our university's HPC, we could only run 100 arrays at any given time, so we would adjust the submission script's array argument to read --array=1-100.  After running this, we would run it again with array=101-200, and so on.
+
+The results from these simulations are saved in the _SPARSim_Results/_ directory, which is empty here on GitHub but contains all results on [OSF](https://osf.io/kygsx/).
 
 
