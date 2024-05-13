@@ -1,6 +1,6 @@
-############################################################################################################################
-## Simulating the OSCC ST data based on SPARSim scRNAseq data with different numbers of cell types based on OSCC Sample 2 ##
-############################################################################################################################
+#####################################################################################################################
+## Simulating the OSCC ST data based on SPARSim scRNAseq data for all samples other than 2 with realistic sparsity ##
+#####################################################################################################################
 
 slurm_arrayid <- Sys.getenv('SLURM_ARRAY_TASK_ID')
 job.id <- as.numeric(slurm_arrayid)
@@ -12,41 +12,22 @@ library(Seurat)
 library(dplyr)
 library(pbmcapply)
 
-n_cell_types <- c(12,10,8,6) #14 is already done in the main simulations
 cell_counts <- 10
 library_factor <- 0.05
 Phi_factor <- 50
-sample <- 2
+sample <- c(1, 3:12)  # We already simulated sample 2 with the realistic library and phi factors in the main simulations
 SC_replicate <- 1:10
 ST_replicate <- 1:10
 
 # Set up the grid of parameters
-grid <- expand.grid(n_cell_types, cell_counts, library_factor, Phi_factor, SC_replicate, ST_replicate, sample)
-colnames(grid) <- c("n_cell_types", "cell_count", "library_factor", "Phi_factor", "SC_rep", "ST_rep", "sample")
+grid <- expand.grid(cell_counts, library_factor, Phi_factor, SC_replicate, ST_replicate, sample)
+colnames(grid) <- c("cell_count", "library_factor", "Phi_factor", "SC_rep", "ST_rep", "sample")
 
-grid$seed <- 1000*1101:1500
-
-# Set up the cell types to use
-# I randomly chose which cell types to remove
-ct.select.list <- list()
-ct.select.list[[1]] <- c("myofibroblast", "cancer cell", "B cell", "ecm-myCAF", "Intermediate fibroblast",
-               "detox-iCAF", "macrophage", "endothelial", "dendritic ",
-               "conventional CD4+ T-helper cells", "cytotoxic CD8+ T ", "Tregs")
-ct.select.list[[2]] <- c("cancer cell", "B cell", "ecm-myCAF", "Intermediate fibroblast",
-               "macrophage", "endothelial", "dendritic ",
-               "conventional CD4+ T-helper cells", "cytotoxic CD8+ T ", "Tregs")
-ct.select.list[[3]] <- c("cancer cell", "B cell", "ecm-myCAF", "Intermediate fibroblast",
-               "detox-iCAF", "macrophage", "dendritic ",
-               "cytotoxic CD8+ T ")
-ct.select.list[[4]] <- c("cancer cell", "ecm-myCAF", "Intermediate fibroblast",
-               "macrophage", 
-               "cytotoxic CD8+ T ", "Tregs")
-	       
+grid$seed <- 1000*1:1100
 
 
-
-# Start the loop, simulate 40 datasets per array
-for (j in ((job.id - 1) * 40 + 1) : (job.id * 40)){
+# Start the loop, simulate 11 datasets per array
+for (j in ((job.id - 1) * 55 + 1) : (job.id * 55)){
   
 
   ##################################################################################
@@ -56,19 +37,12 @@ for (j in ((job.id - 1) * 40 + 1) : (job.id * 40)){
   location <- readRDS(paste0("./Reference/location_", grid$sample[j], ".rds"))
 
   ct.varname <- "cellype_fine"
-  if (grid$n_cell_types[j] == 12){
-     ct.select <- ct.select.list[[1]]
-  } else if (grid$n_cell_types[j] == 10){
-     ct.select <- ct.select.list[[2]]
-  } else if (grid$n_cell_types[j] == 8){
-     ct.select <- ct.select.list[[3]]
-  } else if (grid$n_cell_types[j] == 6){
-     ct.select <- ct.select.list[[4]]
-  }
-
+  ct.select <- c("myofibroblast", "cancer cell", "B cell", "ecm-myCAF", "Intermediate fibroblast",
+               "detox-iCAF", "macrophage", "endothelial", "dendritic ", "mast",
+               "conventional CD4+ T-helper cells", "cytotoxic CD8+ T ", "Tregs", "cytotoxic CD8+ T exhausted")
   sample.varname <- "orig.ident"
 
-  sample <- readRDS(paste0("../Real_Data_Analysis/Data/sample_", grid$sample[j], ".rds"))
+  sample <- readRDS(paste0("../OSCC_Analysis/Data/sample_", grid$sample[j], ".rds"))
   sample_transcripts <- rownames(sample@assays$SCT$counts)
 
 
@@ -105,8 +79,8 @@ for (j in ((job.id - 1) * 40 + 1) : (job.id * 40)){
                                               RNA.counts = eset.sub.split1@assays[["simScMatch"]]@counts,
                                               pattern_gp_label = pattern_patho_label,
                                               ntotal = grid$cell_count[j])
-  saveRDS(sim, paste0("./SPARSim_ST_Data/Sample_", grid$sample[j], "/SPARSim_ST_n", grid$cell_count[j], "_cells_n", grid$n_cell_types[j], "_cell_types",
-                      "_library_factor_", grid$library_factor[j], "_Phi_factor_", grid$Phi_factor[j],
+  saveRDS(sim, paste0("./SPARSim_ST_Data/Sample_", grid$sample[j], "/SPARSim_ST_n", grid$cell_count[j], 
+                      "_cells_library_factor_", grid$library_factor[j], "_Phi_factor_", grid$Phi_factor[j],
 		      "_scRNAseq_rep_", grid$SC_rep[j], "_ST_replicate_", grid$ST_rep[j], ".rds"))
   gc()
   

@@ -1,11 +1,11 @@
-##################################################################################################################################################################
-## Running the HGT + CARD on simulated data based on OSCC Sample 2 with scRNAseq data simulated by SPARSim across our regular 9 combinations of hyperparameters ##
-##################################################################################################################################################################
+#####################################################################################################################################################################
+## Running the HGT + CARD on simulated data based on ALL OSCC samples with scRNAseq data simulated by SPARSim across our regular 9 combinations of hyperparameters ##
+#####################################################################################################################################################################
 
 slurm_arrayid <- Sys.getenv('SLURM_ARRAY_TASK_ID')
 job.id <- as.numeric(slurm_arrayid)
 
-job.id <- job.id #+ 2000 # Adjust the job.id here if your HPC only goes to 1000 arrays
+job.id <- job.id #+ 2000 # Adjust the job.id here if your HPC only goes to 1000 arrays like ours
 cat(job.id)
 
 library(pbmcapply)
@@ -32,29 +32,27 @@ sample.varname <- "orig.ident"
 ###############################
 
 iseed <- c(56789, 123456 + 111111*0:98)
-sample <- 2
+sample <- c(1,3:12)  # Already have output for sample 2 from main simulations
 ntotal <- 10 
 SC_replicate <- 1:10
 ST_replicate <- 1:10
 alpha0 <- c(-0.1, 0.0, 0.1)  #alpha_0 is actually xover.75minusx(invlogit(..)) of these values
 alpha1 <- c(0.1, 0.3, 0.5) 
 
-grid_temp <- expand.grid(alpha0, alpha1, SC_replicate, ST_replicate, sample)
-colnames(grid_temp) <- c( "alpha0", "alpha1", "SC_replicate", "ST_replicate", "sample")
-grid_temp$iseed <- rep(rep(iseed, rep(9, length(iseed))))
-grid_temp$ntotal <- ntotal
-
-lib_factor <- c(0.05, 0.1, 0.2, 0.4, 0.6)
-Phi_factor <- c(50, 10, 4, 4, 4)
-grid <- data.frame(alpha0 = rep(grid_temp$alpha0, 5), alpha1 = rep(grid_temp$alpha1, 5), SC_replicate = rep(grid_temp$SC_replicate, 5), ST_replicate =	rep(grid_temp$ST_replicate, 5),
-     	 	    lib_factor = rep(lib_factor, rep(900,5)), Phi_factor = rep(Phi_factor, rep(900, 5)), sample = 2, ntotal = 10, seed = rep(grid_temp$iseed, 5))
+grid <- expand.grid(alpha0, alpha1, SC_replicate, ST_replicate, sample)
+colnames(grid) <- c( "alpha0", "alpha1", "SC_replicate", "ST_replicate", "sample")
+grid$iseed <- rep(rep(iseed, rep(9, length(iseed))))
+grid$ntotal <- ntotal
+grid$lib_factor <- 0.05
+grid$Phi_factor <- 50 # Realistic sparsity settings
 
 
 ######################
 # Run the HGT + CARD #
 ######################
 
-for (j in ((job.id - 1) * 3 + 1) : (job.id * 3)){
+# Need to only do 1 job at a time because some OSCC samples are much larger than others and take correspondingly longer
+for (j in ((job.id - 1) * 1 + 1) : (job.id * 1)){
 
 # Load the predefined layer label data and the location data
 pattern_patho_label <- readRDS(paste0("./Reference/pattern_patho_label_", grid$sample[j], ".rds"))
@@ -106,7 +104,7 @@ sim <- SimOverCARD_OSCC(sc_count = eset.sub.split2@assays$simSC@counts,
                         alpha1 = grid$alpha1[j],
                         n = 100,
                         doWAIC = TRUE,
-                        seed = grid$seed[j])
+                        seed = grid$iseed[j])
 
 saveRDS(sim, file_name)
 gc()
