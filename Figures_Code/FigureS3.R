@@ -75,6 +75,51 @@ for(j in 1:nrow(res_df)){
 res_df <- res_df[res_df$best_WAIC, ]
 rownames(res_df) <- 1:100
 
+# Get the HGT w/o ZI + CARD results
+iseed <- c(56789, 123456 + 111111*0:98)
+sample <- 2
+ntotal <- 10 
+SC_replicate <- 1:10
+ST_replicate <- 1:10
+# alpha0 <- c(-0.1, 0.0, 0.1)  #alpha_0 is actually xover.75minusx(invlogit(..)) of these values
+alpha1 <- c(0.1, 0.3, 0.5) # to match seq depth sims
+grid <- expand.grid(alpha1, SC_replicate, ST_replicate, sample)
+colnames(grid) <- c( "alpha1", "SC_replicate", "ST_replicate", "sample")
+grid$seed <- rep(rep(iseed, rep(3, length(iseed))))
+grid$ntotal <- ntotal
+grid$sample <- 2
+
+grid$lib_factor <- 0.05
+grid$Phi_factor <- 50
+
+
+res_df <- data.frame()
+for (j in 1:300){
+  files <- dir(paste0("SPARSim_Results/Sample_", grid$sample[j], "/HGT_noZI/"))
+  file_name <- paste0("HGT_noZI_SPARSim_pseudo_OSCC_n", grid$ntotal[j], 
+                      "_cells_library_factor_", grid$lib_factor[j],
+                      "_Phi_factor_", grid$Phi_factor[j],
+                      "_scRNAseq_rep_", grid$SC_replicate[j],
+                      "_ST_replicate_", grid$ST_replicate[j],
+                      "_alpha1_", grid$alpha1[j], ".rds")
+  if (!(file_name %in% files)){next}
+  res <- readRDS(paste0("SPARSim_Results/Sample_", grid$sample[j], "/HGT_noZI/", file_name))
+  tmp_df <- data.frame(sample = grid$sample[j], n_cell_types = 14, 
+                       cell_count = grid$ntotal[j],
+                       lib_factor = grid$lib_factor[j], Phi_factor = grid$Phi_factor[j],
+                       SC_rep = grid$SC_replicate[j], ST_rep = grid$ST_replicate[j], 
+                       alpha1 = grid$alpha1[j], 
+                       CARD_rmse = res$rmse$CARD_rmse, Ave_rmse = res$rmse$Ave_rmse, 
+                       Median_rmse = res$rmse$Median_rmse, j = j, WAIC = res$WAIC,
+                       PercentMedianDiff = 100*(1-(res$rmse$Median_rmse / res$rmse$CARD_rmse)),
+                       PercentMeanDiff = 100*(1-(res$rmse$Ave_rmse / res$rmse$CARD_rmse)))
+  res_df <- rbind(res_df, tmp_df)
+  if (j %% 10 == 0){
+    gc()
+    cat(j)
+  }
+}
+
 # Now get the results for the other methods
 grid <- expand.grid(alpha0, alpha1, SC_replicate, ST_replicate, sample)
 colnames(grid) <- c("alpha0", "alpha1", "SC_replicate", "ST_replicate", "sample")
@@ -184,15 +229,19 @@ for (j in 1:100){
 }
 res_df_DT$Method <- "Det. Transformation + CARD"
 
-# Make the HGT and DT results match the same formatting (and skip the problematic results for SpatialDecon)
-res_df_HGT <- res_df[-(c(1:9,91:99)), c("SC_rep", "ST_rep", "Ave_rmse", "CARD_rmse", "PercentMeanDiff")]
-colnames(res_df_HGT) <- c("SC_rep", "ST_rep", "RMSE", "CARD_RMSE", "PercentDiff")
-res_df_HGT$Method <- "HGT + CARD"
+# Make the ZI-HGT, HGT, and DT results match the same formatting
+res_df_ZIHGT <- res_df_ZIHGT[-(c(1:9,91:99)), c("SC_rep", "ST_rep", "Ave_rmse", "CARD_rmse", "PercentMeanDiff")]
+colnames(res_df_ZIHGT) <- c("SC_rep", "ST_rep", "RMSE", "CARD_RMSE", "PercentDiff")
+res_df_ZIHGT$Method <- "ZI-HGT + CARD"
+
+res_df_HGT_noZI <- res_df_HGT_noZI[-(c(1:9,91:99)), c("SC_rep", "ST_rep", "Ave_rmse", "CARD_rmse", "PercentMeanDiff")]
+colnames(res_df_HGT_noZI) <- c("SC_rep", "ST_rep", "RMSE", "CARD_RMSE", "PercentDiff")
+res_df_HGT_noZI$Method <- "HGT w/o ZI + CARD"
 
 res_df_DT <- res_df_DT[-c(1:9,91:99),]
 
-res_all_df <- rbind(res_all_df, res_df_HGT, res_df_DT)
-write.table(res_all_df, "../Simulations/Simulation_Results/OSCC_Simulations_Method_Comp_incl_DT.txt", sep = "\t", row.names=F)
+res_all_df <- rbind(res_all_df, res_df_ZIHGT, res_df_HGT_noZI, res_df_DT)
+write.table(res_all_df, "OSCC_Simulations_Method_Comp_incl_DT_HGTnoZI.txt", sep = "\t", row.names=F)
 
 
 #############
@@ -200,11 +249,11 @@ write.table(res_all_df, "../Simulations/Simulation_Results/OSCC_Simulations_Meth
 #############
 
 library(ggplot2)
-res_all_df <- read.table("../Simulations/Simulation_Results/OSCC_Simulations_Method_Comp_incl_DT.txt", header = T)
-res_all_df$Method[res_all_df$Method == "HGT + CARD"] <- "ZI-HGT + CARD"
+res_all_df <- read.table("OSCC_Simulations_Method_Comp_incl_DT_HGTnoZI.txt", header = T)
+res_all_df$Method[res_all_df$Method == "Det. Transformation + CARD"] <- "Det. Trans. + CARD"
 
-res_all_df$Method_f <- factor(res_all_df$Method, levels = c("ZI-HGT + CARD", "Det. Transformation + CARD", "SPOTlight",
-                                                            "SpatialDecon", "STdeconvolve"))
+res_all_df$Method_f <- factor(res_all_df$Method, levels = c("ZI-HGT + CARD", "HGT w/o ZI + CARD", "Det. Trans. + CARD",
+                                                            "SPOTlight", "SpatialDecon", "STdeconvolve"))
 
 # Plot results
 g <- ggplot(res_all_df, aes(x = Method_f, y = PercentDiff)) + geom_boxplot(outlier.shape = NA, fill = "green4") + theme_bw() +
