@@ -78,4 +78,33 @@ This file (along with the accompanying submission script _runHGTCARD_OSCC_SPARSi
 
 The results from these simulations are saved in the _SPARSim_Results/_ directory, which is empty here on GitHub but contains all results on [OSF](https://osf.io/kygsx/).
 
+### DeterministicTransformation_OSCC_SPARSims_Samp_2_Sparse.R
 
+This file (along with the accompanying submission script _DeterministicTransformation_OSCC_SPARSims_Samp_2_Sparse.sh_) runs a comparable to the ZI-HGT deterministic transformation + CARD and CARD itself on "realistically sparse" simulated ST data for OSCC Sample 2.  This results in one of the boxes in the Methods Comparison boxplot in Supplementary Figure 3.  Exact specifications of the job can be found in the two files.  
+
+The results from these simulations are saved in the _SPARSim_Results/_ directory, which is empty here on GitHub but contains all results on [OSF](https://osf.io/kygsx/).
+
+### runHGT_noZI_CARD_OSCC_SPARSims_Sample_2.R
+
+This file (along with the accompanying submission script _runHGT_noZI_CARD_OSCC_SPARSims_Sample_2.sh_) runs an HGT without considering zero-inflation + CARD and CARD itself on "realistically sparse" simulated ST data for OSCC Sample 2.  This results in one of the boxes in the Methods Comparison boxplot in Supplementary Figure 3.  Exact specifications of the job can be found in the two files.  
+
+The results from these simulations are saved in the _SPARSim_Results/_ directory, which is empty here on GitHub but contains all results on [OSF](https://osf.io/kygsx/).
+
+
+### SPOTlight_OSCC_SPARSims_Samp_2_Sparse.R
+
+This file (along with the accompanying submission script _SPOTlight_OSCC_SPARSims_Samp_2_Sparse.sh_) runs the SPOTlight ([Elosua-Bayes 2021](https://academic.oup.com/nar/article/49/9/e50/6129341)) cell-type deconvolution method on the "realistically sparse" simulated ST data for OSCC Sample 2.  This results in one of the boxes in the Methods Comparison boxplot in Supplementary Figure 3.  Exact specifications of the job can be found in the two files.  
+
+The results from these simulations are saved in the _SPARSim_Results/_ directory, which is empty here on GitHub but contains all results on [OSF](https://osf.io/kygsx/).
+
+### SpatialDecon_OSCC_SPARSims_Samp_2_Sparse.R
+
+This file (along with the accompanying submission script _SpatialDecon_OSCC_SPARSims_Samp_2_Sparse.sh_) runs the SpatialDecon ([Danaher 2022](https://www.nature.com/articles/s41467-022-28020-5)) cell-type deconvolution method on the "realistically sparse" simulated ST data for OSCC Sample 2.  This results in one of the boxes in the Methods Comparison boxplot in Supplementary Figure 3.  Exact specifications of the job can be found in the two files.  
+
+The results from these simulations are saved in the _SPARSim_Results/_ directory, which is empty here on GitHub but contains all results on [OSF](https://osf.io/kygsx/).
+
+### STdeconvolve_OSCC_SPARSims_Samp_2_Sparse.R
+
+This file (along with the accompanying submission script _STdeconvolve_OSCC_SPARSims_Samp_2_Sparse.sh_) runs the STdeconvolve ([Miller 2022](https://www.nature.com/articles/s41467-022-30033-z)) cell-type deconvolution method on the "realistically sparse" simulated ST data for OSCC Sample 2.  This results in one of the boxes in the Methods Comparison boxplot in Supplementary Figure 3.  Exact specifications of the job can be found in the two files.  
+
+The results from these simulations are saved in the _SPARSim_Results/_ directory, which is empty here on GitHub but contains all results on [OSF](https://osf.io/kygsx/).
