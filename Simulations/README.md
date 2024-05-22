@@ -108,3 +108,9 @@ The results from these simulations are saved in the _SPARSim_Results/_ directory
 This file (along with the accompanying submission script _STdeconvolve_OSCC_SPARSims_Samp_2_Sparse.sh_) runs the STdeconvolve ([Miller 2022](https://www.nature.com/articles/s41467-022-30033-z)) cell-type deconvolution method on the "realistically sparse" simulated ST data for OSCC Sample 2.  This results in one of the boxes in the Methods Comparison boxplot in Supplementary Figure 3.  Exact specifications of the job can be found in the two files.  
 
 The results from these simulations are saved in the _SPARSim_Results/_ directory, which is empty here on GitHub but contains all results on [OSF](https://osf.io/kygsx/).
+
+# CARD_Simulations
+
+This directory contains all of the code needed to generate the simulation results following the exact
+simulation setup in [CARD](https://www.nature.com/articles/s41587-022-01273-7).  See the README in the directory 
+for an explanation of each file contained within.
