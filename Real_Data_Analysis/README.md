@@ -7,3 +7,5 @@ options depending on the computational resources you have access to, and any opt
 underscores before and after the option (for example, \_JOB\_NAME\_HERE\_).
 
 Unfortunately, the data files are too large to comfortably store on GitHub.  You may find them on our [OSF](https://osf.io/kygsx/).
+
+Before conducting the cell-type deconvolution, you'll need to process the single-cell data from Puram et al. with ProcessReference.R.
