@@ -26,12 +26,15 @@ Real_Data_Analysis directory or Simulations directory, or they may be found on [
 
 Code to generate the results based on the real data, 12 OSCC TME samples collected by Arora et al.  We ran this code on
 the university's high performance computer, which uses a Slurm workload manager.  For exact specifications of the job we
-ran, see the .sh file.  The real data is unfortunately too  large to store on GitHub, but it may be found on [OSF](https://osf.io/kygsx/).
+ran, see the .sh file.  The real data is unfortunately too large to store on GitHub, but it may be found on [OSF](https://osf.io/kygsx/).
 
 ## Simulations
 
+Code to generate and analyze all simulationed data included in the project.  Most simulations are built to mimic the structure of the OSCC TME ST data, though we followed CARD's exact simulations as well for additional analysis.  We ran all code on the university's high performance computer, which uses a Slurm workload manager.  For exact specifications of the jobs we ran, see the .sh file.
+
 ## Utilities
 
+All of the functions used to preprocess and analyze data, build and analyze simulations, and in general get everything done for the project, are in one of the two files in this directory.
 
 
 
