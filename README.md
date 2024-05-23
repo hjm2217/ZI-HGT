@@ -5,11 +5,23 @@ This GitHub repository contains code to reproduce all figures, real data results
 _A Zero-Inflated Hierarchical Generalized Transformation Model to Address Non-Normality in Spatially-Informed Cell-Type Deconvolution_
 by Hunter J. Melton, Jonathan R. Bradley, and Chong Wu.
 
-## Organization
+## Organization and Instructions for Replication
 
 There are four directories that contain reproduction code, plus one that contains the figures.  Each code directory
 contains a README file that briefly describes the files within it, and each code file includes instructions for running
 the code.
+
+To fully replicate the results shown in the paper, follow the steps given below.
+
+1) Download the data.  You can find the OSCC ST data from Arora et al. [here](https://figshare.com/articles/dataset/Spatial_transcriptomics_reveals_distinct_and_conserved_tumor_core_and_edge_architectures_that_predict_survival_and_targeted_therapy_response_/20304456/1) and the corresponding scRNAseq data from Puram et al. [here](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE103322).
+
+2) Go to the _Real_Data_Analysis_ directory.  Process the scRNAseq data with _ProcessReference.R_ (and using the _Data/cluster_identification.csv_ file.  Then run the real data analysis by running _Real_Data_Analysis.R_.  On the logon node of your local HPC, run sbatch _Real_Data_Analysis.sh_ (you'll need to make a few edits to the .sh file with your desired job name, partition name, etc.  Once you've generated all of the results and they're saved to the _Results_ subdirectory, you're in good shape here.
+
+3) You can now plot all of our real data results.  Go to the _Figures_Code_ directory.  You can run the code in _Figure2.R_, _Figure3.R_, and _Figure5-7_S7-S39.R_ to generate the corresponding figures.
+
+4) Go to the _Simulations_ directory.  You can follow along running the scripts as they're described in the _Simulations/README.md_ file.
+
+5) You can now plot all of the simulations results.  Go to the _Figures_Code_ directory.  You can run the code in _Figure4_S4-S6.R_, _FigureS1.R_, _FigureS2.R_, and _FigureS3.R_ to generate the corresponding figures.
 
 ## Figures
 
