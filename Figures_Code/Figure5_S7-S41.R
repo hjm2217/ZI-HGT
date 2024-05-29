@@ -64,11 +64,16 @@ for (j in 1:nrow(min_WAIC)){
   
   # Make sure to save the figures to the correct locations/names
   if (min_WAIC$dataset[j] == 1){
-    figure_names <- paste0("../Figures/Figure", c("5a", "6a", "7a", "7b"), ".png")
+    figure_names <- c("../Figures/Figure5a.png", paste0("../Figures/Supplementary_Figures/FigureS", c("7a", "8a", "8b"), ".png"))
+    #figure_names <- paste0("../Figures/Figure", c("5a", "6a", "7a", "7b"), ".png")
   } else {
     figure_names <- paste0("../Figures/Supplementary_Figures/FigureS", 
-                           c( (min_WAIC$dataset[j]-1)*2 + 5, (min_WAIC$dataset[j]-1)*2 + 6, min_WAIC$dataset[j] + 27, min_WAIC$dataset[j] + 27),
+                           c( (min_WAIC$dataset[j]-1)*2 + 7, (min_WAIC$dataset[j]-1)*2 + 8, min_WAIC$dataset[j] + 29, min_WAIC$dataset[j] + 29),
                            c("a", "a", "a", "b"), ".png")
+    
+    #figure_names <- paste0("../Figures/Supplementary_Figures/FigureS", 
+    #                       c( (min_WAIC$dataset[j]-1)*2 + 5, (min_WAIC$dataset[j]-1)*2 + 6, min_WAIC$dataset[j] + 27, min_WAIC$dataset[j] + 27),
+    #                       c("a", "a", "a", "b"), ".png")
   } # the above is a rather confusing map, we apologize for that. The figures will be named correctly though, don't worry
 
   
@@ -122,10 +127,10 @@ for (j in 1:nrow(min_WAIC)){
   
   # Make sure to save the figures to the correct locations/names
   if (min_WAIC$dataset[j] == 1){
-    figure_names <- paste0("../Figures/Figure", c("5b", "6b"), ".png")
+    figure_names <- paste0("../Figures/", c("Figure5b", "Supplementary_Figures/FigureS7b"), ".png")
   } else {
     figure_names <- paste0("../Figures/Supplementary_Figures/FigureS", 
-                           c( (min_WAIC$dataset[j]-1)*2 + 5, (min_WAIC$dataset[j]-1)*2 + 6),
+                           c( (min_WAIC$dataset[j]-1)*2 + 7, (min_WAIC$dataset[j]-1)*2 + 8),
                            c("b", "b"), ".png")
   } # the above is a rather confusing map, we apologize for that. The figures will be named correctly though, don't worry
   
