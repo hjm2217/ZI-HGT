@@ -17,7 +17,7 @@ To fully replicate the results shown in the paper, follow the steps given below.
 
 2) Go to the _Real_Data_Analysis_ directory.  Process the scRNAseq data with _ProcessReference.R_ (and using the _Data/cluster_identification.csv_ file.  Then run the real data analysis by running _Real_Data_Analysis.R_.  On the logon node of your local HPC, run sbatch _Real_Data_Analysis.sh_ (you'll need to make a few edits to the .sh file with your desired job name, partition name, etc.  Once you've generated all of the results and they're saved to the _Results_ subdirectory, you're in good shape here.
 
-3) You can now plot all of our real data results.  Go to the _Figures_Code_ directory.  You can run the code in _Figure2.R_, _Figure3.R_, and _Figure5-7_S7-S39.R_ to generate the corresponding figures.
+3) You can now plot all of our real data results.  Go to the _Figures_Code_ directory.  You can run the code in _Figure2.R_, _Figure3.R_, and _Figure5_S7-S41.R_ to generate the corresponding figures.
 
 4) Go to the _Simulations_ directory.  You can follow along running the scripts as they're described in the _Simulations/README.md_ file.
 
@@ -30,8 +30,8 @@ The figures from the manuscript are contained within this directory.
 ## Figures_Code
 
 Code to generate the figures is contained in this directory.  Each individual file has instructions and code for prepping
-the results for the plot and for making the plot.  Oftentimes the raw results are too big to store on GitHub, but the 
-prepared results will be available.  Any raw results not found here may be generated following the code in the 
+the results for the plot and for making the plot.  Oftentimes the results are too big to store on GitHub, but the 
+prepared results will be available.  Any real data results not found here may be generated following the code in the 
 Real_Data_Analysis directory or Simulations directory, or they may be found on [OSF](https://osf.io/kygsx/).
 
 ## Real_Data_Analysis
