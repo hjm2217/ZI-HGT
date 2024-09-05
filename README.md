@@ -9,7 +9,7 @@ Spatially-Informed Cell-Type Deconvolution_ by Hunter J. Melton, Jonathan R. Bra
 
 If you're interested in using the ZI-HGT, we anticipate that it is for one of two reasons.
 
-#### You want to use the ZI-HGT + CARD to conduct more accurate cell-type deconvolution with built in uncertainty quantification.
+### You want to use the ZI-HGT + CARD to conduct more accurate cell-type deconvolution with built in uncertainty quantification.
 
 In this case, you should navigate to the _Real_Data_Analysis_ directory.  You'll want to preprocess your reference scRNAseq data however you typically do (we use Seurat, and you can see an example in _ProcessReference.R_).  Be sure you've determined the cell types in your referene scRNAseq data and added that information to the meta data.
 
@@ -26,7 +26,7 @@ After running the analysis, you'll likely want to build cell-type proportions pl
 
 If you run into any trouble, please reach out and let us know.  We would be happy to help!
 
-#### You want to use the ZI-HGT as a wrapper function for your another method.
+### You want to use the ZI-HGT as a wrapper function for your another method.
 
 This will be a little bit trickier, as you will need to adapt and edit our code to work with your method.  On the bright side, assuming your method works on the counts, and you would like a more normal version of those counts and built in UQ, it should not be too difficult.
 
