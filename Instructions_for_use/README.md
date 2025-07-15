@@ -2,13 +2,13 @@
 
 ## Installation
 
-Until the ZI-HGT becomes a package (at which point this README will look a bit different), please download the HGTfunctions3.R script and source it, as shown in _Tutorial.html_.
+Until the ZI-HGT becomes a package (at which point this README will look a bit different), please download the HGTfunctions3.R script and source it, as shown in the tutorial.
 
 ## If you're interested in using the ZI-HGT, we anticipate that it is for one of two reasons.
 
 ### You want to use the ZI-HGT + CARD to conduct more accurate cell-type deconvolution with built in uncertainty quantification.
 
-In this case, please follow along with the tutorial.
+In this case, please follow along with the [tutorial](https://hjm2217.github.io/ZI-HGT/Tutorial.html).
 
 You may need to do some preprocessing of your reference scRNAseq data however you typically do (we use Seurat, and you can see an example in _Replication/Real
 _Data_Analysis/ProcessReference.R_). Be sure you've determined the cell types in your reference scRNAseq data and added that information to the meta data.
@@ -33,4 +33,4 @@ Essentially, you will need to adapt the structure of the code found in the _HGTp
 4) After the loop, collect summaries of the results - the mean, median, variance, 95% BCIs, etc. as we did.  If you wish to calculate the WAIC, you'll do that here too.
 5) If you've decided to use the WAIC, after you've run all of the analysis across all hyperparameters and samples, choose your hyperparameters for each sample by minimizing the WAIC.
 
-Those are the steps to implementing the ZI-HGT agnostically around an unknown method.  If you run into any trouble, please reach out and let us know.  We are happy to help!
+Those are the general steps to implementing the ZI-HGT agnostically around an unknown method.  If you run into any trouble, or you'd like to discuss how to use the ZI-HGT with your method, please reach out and let us know!  We are happy to help.
