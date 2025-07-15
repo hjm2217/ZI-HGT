@@ -241,7 +241,7 @@ res_df_HGT_noZI$Method <- "HGT w/o ZI + CARD"
 res_df_DT <- res_df_DT[-c(1:9,91:99),]
 
 res_all_df <- rbind(res_all_df, res_df_ZIHGT, res_df_HGT_noZI, res_df_DT)
-write.table(res_all_df, "OSCC_Simulations_Method_Comp_incl_DT_HGTnoZI.txt", sep = "\t", row.names=F)
+write.table(res_all_df, "../Simulations/Simulation_ResultsOSCC_Simulations_Method_Comp_incl_DT_HGTnoZI.txt", sep = "\t", row.names=F)
 
 
 #############
@@ -249,7 +249,7 @@ write.table(res_all_df, "OSCC_Simulations_Method_Comp_incl_DT_HGTnoZI.txt", sep 
 #############
 
 library(ggplot2)
-res_all_df <- read.table("OSCC_Simulations_Method_Comp_incl_DT_HGTnoZI.txt", header = T)
+res_all_df <- read.table("../Simulations/Simulation_Results/OSCC_Simulations_Method_Comp_incl_DT_HGTnoZI.txt", header = T)
 res_all_df$Method[res_all_df$Method == "Det. Transformation + CARD"] <- "Det. Trans. + CARD"
 
 res_all_df$Method_f <- factor(res_all_df$Method, levels = c("ZI-HGT + CARD", "HGT w/o ZI + CARD", "Det. Trans. + CARD",
