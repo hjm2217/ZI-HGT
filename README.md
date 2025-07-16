@@ -3,7 +3,7 @@ The ZI-HGT
 
 ## A Zero-Inflated Hierarchical Generalized Transformation Model to Address Non-Normality in Spatially-Informed Cell-Type Deconvolution
 
-This GitHub repository contains instructions to use the ZI-HGT in your work and code to reproduce all figures, 
+This repository contains instructions to use the ZI-HGT in your work and code to reproduce all figures, 
 real data results, and simulation results from the paper _A Zero-Inflated Hierarchical Generalized Transformation Model to Address Non-Normality in 
 Spatially-Informed Cell-Type Deconvolution_ by Hunter J. Melton, Jonathan R. Bradley, and Chong Wu.
 
